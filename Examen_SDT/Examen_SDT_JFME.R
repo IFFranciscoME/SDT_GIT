@@ -10,7 +10,7 @@ rm(list=ls())
 # -- ---------------------------------------------------------------- Paquetes a utilizar -- #
 
 # Codigo para cargar paquetes, si no estan instalados, los instala en automatico
-pkg <- c("dplyr", "forecast", "fUnitRoots", "ggplot2", "gridExtra", "TSA", "ts", "zoo")
+pkg <- c("dplyr", "forecast", "fUnitRoots", "ggplot2", "gridExtra", "TSA", "zoo")
 
 # Modificar verbose = TRUE para visualizar mensajes de consola
 
@@ -24,13 +24,6 @@ instpackages <- lapply(pkg, library, character.only=TRUE)
 
 # si se hace "run" del script, utilizar la siguiente linea
 setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
-
-# -- ------------------------------------------------------------------- Scripts de apoyo -- #
-# -- ------------------------------------------------------------------------------------ -- #
-
-RawGitHub <- "https://raw.githubusercontent.com/IFFranciscoME/"
-DataVisualization <- paste(RawGitHub,"RDataVisualization/master/RDataVisualization.R",sep="")
-downloader::source_url(DataVisualization,prompt=FALSE,quiet=TRUE)
 
 # -- ------------------------------------------------------------ Cargar y preparar datos -- #
 # -- ------------------------------------------------------------------------------------ -- #
@@ -155,8 +148,8 @@ adfTest(data_examen$s1, lags=ord$order) # se rechaza HO, no es integrada de orde
 
 # -- --------------------------------------------------------- Paso 2: Pruebas FAC y FACP -- #
 
-acf(data_examen$s1)    # Todos los resagos resultan ser no significativos
-pacf(data_examen$s1)   # Todos los resagos resultan ser no significativos
+prueba_acf  <- acf(data_examen$s1)    # Todos los resagos resultan ser no significativos
+prueba_pacf <- pacf(data_examen$s1)   # Todos los resagos resultan ser no significativos
 
 # --------------------
 # Conclusiones PASO 2:
